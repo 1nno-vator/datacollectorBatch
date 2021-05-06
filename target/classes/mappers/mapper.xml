@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="batch.mappers.mapper">
+
+    <select id="test" resultType="HashMap">
+
+        SELECT 1 AS NUM, 'KMS' AS NAME UNION ALL
+        SELECT 2 AS NUM, 'LYS' AS NAME
+
+    </select>
+
+    <select id="getBjd" resultType="HashMap">
+
+        SELECT
+            STDR_DE
+             , CONV_BJD_CD
+             , BJD_NM
+        FROM BJD_MS_210504
+        WHERE IS_EXISTS = 1
+
+    </select>
+
+</mapper>
