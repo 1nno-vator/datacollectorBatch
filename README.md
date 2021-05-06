@@ -17,3 +17,15 @@
     
 2. src/main/resources/db.properties
     - Database 접속정보
+   
+- - -
+# DDL
+
+```sql
+CREATE TABLE public.rdnm_adrs_ms (
+   id varchar(20) NULL,
+   road_nm varchar(100) NULL,
+   geo_type varchar(20) NULL,
+   coordinates text NULL,
+   geom geometry NULL
+);
