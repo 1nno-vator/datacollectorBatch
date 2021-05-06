@@ -19,7 +19,30 @@
              , BJD_NM
         FROM BJD_MS_210504
         WHERE IS_EXISTS = 1
+        AND RIGHT(CONV_BJD_CD,2) != '00'
 
     </select>
+
+    <update id="truncateTable">
+        TRUNCATE TABLE ${TABLE_NAME}
+    </update>
+
+    <insert id="insertList" parameterType="java.util.List">
+
+        INSERT INTO RDNM_ADRS_MS
+        (
+            ID
+            , ROAD_NM
+            , GEO_TYPE
+            , COORDINATES
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+        (
+            #{item.ID}, #{item.ROAD_NM}, #{item.TYPE}, #{item.COORDINATES}
+        )
+        </foreach>
+
+    </insert>
 
 </mapper>

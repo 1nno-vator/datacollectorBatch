@@ -16,16 +16,41 @@ public class MainDAO {
     }
 
     public List<Map<String, Object>> getBjd() {
-        List<Map<String, Object>> test = new ArrayList<>();
+        List<Map<String, Object>> bjdList = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             // do something ...
             String queryId = "getBjd";
-            test = session.selectList(NAMESPACE + queryId);
+            bjdList = session.selectList(NAMESPACE + queryId);
         } finally {
             // session.commit(); // insert or update ...
             session.close();
         }
-        return test;
+        return bjdList;
+    }
+
+    public void truncateTable(String _tableName) {
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            String queryId = "truncateTable";
+            session.update(NAMESPACE + queryId, _tableName);
+        } finally {
+            session.commit();
+            session.close();
+        }
+    }
+
+    public int insertList(List list) {
+        SqlSession session = sqlSessionFactory.openSession();
+        int insertCount = 0;
+        try {
+            // do something ...
+            String queryId = "insertList";
+            insertCount = session.insert(NAMESPACE + queryId, list);
+        } finally {
+            session.commit(); // insert or update ...
+            session.close();
+        }
+        return insertCount;
     }
 }
